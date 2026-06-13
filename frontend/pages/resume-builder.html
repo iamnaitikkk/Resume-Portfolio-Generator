@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ResumeForge | Resume Builder</title>
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/resume.css" />
+  </head>
+  <body>
+    <main class="container page-builder">
+      <section class="builder-panel card">
+        <div class="panel-header">
+          <div>
+            <h1 class="section-title">Resume Builder</h1>
+            <p class="small-text">Choose a template, add your details, and download a PDF.</p>
+          </div>
+          <a class="secondary-button" href="/">Back to Home</a>
+        </div>
+
+        <div class="template-section">
+          <h3 class="small-text">Choose a template</h3>
+          <div id="resume-templates" class="template-grid"></div>
+        </div>
+
+        <form id="resume-form" class="builder-form">
+          <label>
+            <select id="resume-template" name="template" class="template-select"></select>
+          </label>
+
+          <label>
+            Full Name
+            <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+          </label>
+
+          <label>
+            Job Title
+            <input type="text" id="title" name="title" placeholder="Product Designer" />
+          </label>
+
+          <label>
+            Email
+            <input type="email" id="email" name="email" placeholder="jane@example.com" />
+          </label>
+
+          <label>
+            Phone
+            <input type="text" id="phone" name="phone" placeholder="(555) 123-4567" />
+          </label>
+
+          <label>
+            Location
+            <input type="text" id="location" name="location" placeholder="Remote / City, Country" />
+          </label>
+
+          <label>
+            Summary
+            <textarea id="summary" name="summary" rows="4" placeholder="A concise sentence highlighting your experience and strengths."></textarea>
+          </label>
+
+          <label>
+            Skills (comma separated)
+            <input type="text" id="skills" name="skills" placeholder="Product design, Figma, Leadership" />
+          </label>
+
+          <label>
+            Experience (one item per line)
+            <textarea id="experience" name="experience" rows="4" placeholder="Lead product design for mobile app launch"></textarea>
+          </label>
+
+          <label>
+            Education (one item per line)
+            <textarea id="education" name="education" rows="3" placeholder="B.A. in Design - University Name"></textarea>
+          </label>
+
+          <button type="submit" class="primary-button">Generate PDF</button>
+        </form>
+
+        <div id="resume-result" class="result-panel"></div>
+      </section>
+
+      <section class="preview-panel card">
+        <h2 class="section-title">Live Preview</h2>
+        <div id="resume-preview" class="preview-box"></div>
+      </section>
+    </main>
+
+    <script src="/assets/js/resume.js"></script>
+  </body>
+</html>

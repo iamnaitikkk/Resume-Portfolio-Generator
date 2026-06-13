@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ name }} | Creative Portfolio</title>
+    <style>
+      body { margin: 0; font-family: Inter, Arial, sans-serif; background: #fff7ed; color: #1d2939; }
+      .page { max-width: 940px; margin: 1.5rem auto; padding: 2.5rem; }
+      .banner { padding: 2rem; background: linear-gradient(135deg, #f97316 0%, #fcd34d 100%); color: #111827; border-radius: 28px; }
+      .banner h1 { margin: 0; font-size: clamp(2.6rem, 4vw, 3.8rem); }
+      .banner p { margin: 1rem 0 0; line-height: 1.7; }
+      .content { display: grid; gap: 1.5rem; margin-top: 2rem; }
+      .split { display: grid; gap: 1.5rem; grid-template-columns: 1fr 1fr; }
+      .card { background: #ffffff; border-radius: 24px; padding: 1.5rem; box-shadow: 0 20px 50px rgba(15,23,42,0.08); }
+      .card h2 { margin-top: 0; font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; color: #ea580c; }
+      .skills { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+      .tag { background: #fee2e2; color: #b91c1c; border-radius: 999px; padding: 0.65rem 1rem; }
+      .project { margin-bottom: 1rem; }
+      .project h3 { margin: 0 0 0.5rem; }
+      .project a { color: #ea580c; }
+      @media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="banner">
+        <h1>{{ name }}</h1>
+        <p>{{ about }}</p>
+      </section>
+      <div class="content">
+        <div class="card">
+          <h2>About</h2>
+          <p>{{ role }}</p>
+          <p>{{ email }} · {{ phone }} · <a href="{{ website }}">{{ website }}</a></p>
+        </div>
+        <div class="card">
+          <h2>Skills</h2>
+          <div class="skills">
+            {% for skill in skills %}
+            <span class="tag">{{ skill }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <section class="card">
+        <h2>Projects</h2>
+        {% for project in projects %}
+        <div class="project">
+          <h3>{{ project.name }}</h3>
+          <p>{{ project.description }}</p>
+          {% if project.link %}
+          <a href="{{ project.link }}" target="_blank">Visit project</a>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </section>
+    </main>
+  </body>
+</html>

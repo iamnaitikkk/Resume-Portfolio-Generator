@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ResumeForge | Portfolio Builder</title>
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/portfolio.css" />
+  </head>
+  <body>
+    <main class="container page-builder">
+      <section class="builder-panel card">
+        <div class="panel-header">
+          <div>
+            <h1 class="section-title">Portfolio Builder</h1>
+            <p class="small-text">Build your personal website with projects, skills, and contact details.</p>
+          </div>
+          <a class="secondary-button" href="/">Back to Home</a>
+        </div>
+
+        <div class="template-section">
+          <h3 class="small-text">Choose a template</h3>
+          <div id="portfolio-templates" class="template-grid"></div>
+        </div>
+
+        <form id="portfolio-form" class="builder-form">
+          <label>
+            <select id="portfolio-template" name="template" class="template-select"></select>
+          </label>
+
+          <label>
+            Full Name
+            <input type="text" id="name" name="name" placeholder="Alex Johnson" required />
+          </label>
+
+          <label>
+            Role
+            <input type="text" id="role" name="role" placeholder="Full Stack Developer" />
+          </label>
+
+          <label>
+            Email
+            <input type="email" id="email" name="email" placeholder="alex@example.com" />
+          </label>
+
+          <label>
+            Phone
+            <input type="text" id="phone" name="phone" placeholder="(555) 987-6543" />
+          </label>
+
+          <label>
+            Website
+            <input type="url" id="website" name="website" placeholder="https://alex.dev" />
+          </label>
+
+          <label>
+            About
+            <textarea id="about" name="about" rows="4" placeholder="A short personal introduction."></textarea>
+          </label>
+
+          <label>
+            Skills (comma separated)
+            <input type="text" id="skills" name="skills" placeholder="HTML, CSS, JavaScript" />
+          </label>
+
+          <fieldset class="project-fieldset">
+            <legend>Projects</legend>
+            <label>
+              Project 1 Name
+              <input type="text" id="project-1-name" placeholder="Project One" />
+            </label>
+            <label>
+              Project 1 Description
+              <input type="text" id="project-1-description" placeholder="A brief summary of the project." />
+            </label>
+            <label>
+              Project 1 Link
+              <input type="url" id="project-1-link" placeholder="https://" />
+            </label>
+
+            <label>
+              Project 2 Name
+              <input type="text" id="project-2-name" placeholder="Project Two" />
+            </label>
+            <label>
+              Project 2 Description
+              <input type="text" id="project-2-description" placeholder="A short overview of your contribution." />
+            </label>
+            <label>
+              Project 2 Link
+              <input type="url" id="project-2-link" placeholder="https://" />
+            </label>
+          </fieldset>
+
+          <button type="submit" class="primary-button">Generate Website</button>
+        </form>
+
+        <div id="portfolio-result" class="result-panel"></div>
+      </section>
+
+      <section class="preview-panel card">
+        <h2 class="section-title">Live Preview</h2>
+        <div id="portfolio-preview" class="preview-box"></div>
+      </section>
+    </main>
+
+    <script src="/assets/js/portfolio.js"></script>
+  </body>
+</html>
