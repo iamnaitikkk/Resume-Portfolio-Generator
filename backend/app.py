@@ -1,16 +1,19 @@
 from pathlib import Path
 
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, session, redirect
 
 from backend.routes.resume_routes import resume_bp
 from backend.routes.portfolio_routes import portfolio_bp
+from backend.routes.auth_routes import auth_bp
 
 BASE_DIR = Path(__file__).resolve().parent
 FRONTEND_DIR = BASE_DIR.parent / "frontend"
 
 app = Flask(__name__, static_folder=None)
+app.secret_key = "dev-secret-key-change-me"
 app.register_blueprint(resume_bp, url_prefix="/api/resume")
 app.register_blueprint(portfolio_bp, url_prefix="/api/portfolio")
+app.register_blueprint(auth_bp, url_prefix="/api/auth")
 
 @app.route("/")
 def index():
@@ -18,11 +21,25 @@ def index():
 
 @app.route("/resume-builder.html")
 def resume_builder_page():
+    if not session.get("user"):
+        return redirect("/login.html?next=/resume-builder.html")
     return send_from_directory(FRONTEND_DIR / "pages", "resume-builder.html")
 
 @app.route("/portfolio-builder.html")
 def portfolio_builder_page():
+    if not session.get("user"):
+        return redirect("/login.html?next=/portfolio-builder.html")
     return send_from_directory(FRONTEND_DIR / "pages", "portfolio-builder.html")
+
+
+@app.route("/login.html")
+def login_page():
+    return send_from_directory(FRONTEND_DIR / "pages", "login.html")
+
+
+@app.route("/signup.html")
+def signup_page():
+    return send_from_directory(FRONTEND_DIR / "pages", "signup.html")
 
 @app.route("/assets/<path:filename>")
 def assets(filename):

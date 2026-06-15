@@ -1,29 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ResumeForge | Portfolio Builder</title>
+    <title>ASSIGNER | Portfolio Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="stylesheet" href="/assets/css/portfolio.css" />
   </head>
   <body>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle lamp-toggle" id="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+      <svg class="lamp-icon" id="lamp-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="lampGlow" cx="50%" cy="38%" r="60%">
+            <stop offset="0%" stop-color="#fff7cc" stop-opacity="0.95"/>
+            <stop offset="55%" stop-color="#ffd84d" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#ffd84d" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle class="lamp-glow" cx="32" cy="24" r="22" fill="url(#lampGlow)"/>
+        <path class="lamp-shade" d="M18 26 L46 26 L40 10 L24 10 Z" fill="currentColor"/>
+        <circle class="lamp-bulb" cx="32" cy="30" r="7"/>
+        <rect class="lamp-pole" x="30" y="30" width="4" height="16" fill="currentColor"/>
+        <path class="lamp-base" d="M20 50 H44 L40 56 H24 Z" fill="currentColor"/>
+      </svg>
+      <span id="theme-label">Dark</span>
+    </button>
+
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="container">
+        <a class="brand" href="/">
+          <span class="brand-mark">✦</span>
+          ASSIGNER
+        </a>
+        <div class="nav-actions">
+          <span class="user-email-badge" data-user-email></span>
+          <a class="ghost-button" href="/">Home</a>
+          <a class="ghost-button" href="/resume-builder.html">Resume Builder</a>
+          <button class="logout-button" id="logout-btn">Logout</button>
+        </div>
+      </div>
+    </header>
+
     <main class="container page-builder">
-      <section class="builder-panel card">
+      <!-- ── Builder Panel ── -->
+      <section class="builder-panel card reveal">
         <div class="panel-header">
           <div>
             <h1 class="section-title">Portfolio Builder</h1>
-            <p class="small-text">Build your personal website with projects, skills, and contact details.</p>
+            <p class="small-text">Build your personal website in minutes.</p>
           </div>
-          <a class="secondary-button" href="/">Back to Home</a>
+          <a class="secondary-button" href="/">← Home</a>
         </div>
 
+        <!-- Template picker -->
         <div class="template-section">
-          <h3 class="small-text">Choose a template</h3>
+          <h3>Choose a template</h3>
           <div id="portfolio-templates" class="template-grid"></div>
         </div>
 
-        <form id="portfolio-form" class="builder-form">
+        <form id="portfolio-form" class="builder-form" novalidate>
           <label>
             <select id="portfolio-template" name="template" class="template-select"></select>
           </label>
@@ -50,7 +91,8 @@
 
           <label>
             Website
-            <input type="url" id="website" name="website" placeholder="https://alex.dev" />
+            <!-- FIX: changed type="url" → type="text" to prevent browser "Enter URL" validation popup -->
+            <input type="text" id="website" name="website" placeholder="https://alex.dev" />
           </label>
 
           <label>
@@ -65,6 +107,7 @@
 
           <fieldset class="project-fieldset">
             <legend>Projects</legend>
+
             <label>
               Project 1 Name
               <input type="text" id="project-1-name" placeholder="Project One" />
@@ -75,7 +118,8 @@
             </label>
             <label>
               Project 1 Link
-              <input type="url" id="project-1-link" placeholder="https://" />
+              <!-- FIX: changed type="url" → type="text" to prevent browser "Enter URL" validation popup -->
+              <input type="text" id="project-1-link" placeholder="https://github.com/you/project" />
             </label>
 
             <label>
@@ -88,22 +132,36 @@
             </label>
             <label>
               Project 2 Link
-              <input type="url" id="project-2-link" placeholder="https://" />
+              <!-- FIX: changed type="url" → type="text" to prevent browser "Enter URL" validation popup -->
+              <input type="text" id="project-2-link" placeholder="https://github.com/you/project2" />
             </label>
           </fieldset>
 
-          <button type="submit" class="primary-button">Generate Website</button>
+          <label>
+            Certificates / Achievements
+            <input type="file" id="portfolio-certificates" name="certificates" accept="image/*,application/pdf" multiple />
+            <div id="portfolio-certificates-list" class="certificates-list"></div>
+          </label>
+
+          <button type="submit" class="primary-button">✨ Generate Website</button>
         </form>
 
         <div id="portfolio-result" class="result-panel"></div>
       </section>
 
-      <section class="preview-panel card">
-        <h2 class="section-title">Live Preview</h2>
-        <div id="portfolio-preview" class="preview-box"></div>
+      <!-- ── Preview Panel ── -->
+      <section class="preview-panel card reveal reveal-delay-1">
+        <h2>Live Preview</h2>
+        <div class="preview-box" id="portfolio-preview">
+          <p style="color:var(--text-muted); font-style:italic; margin-top:3rem; text-align:center;">
+            Fill in the form to see a live preview here.
+          </p>
+        </div>
       </section>
     </main>
 
     <script src="/assets/js/portfolio.js"></script>
+    <script src="/assets/js/auth-guard.js"></script>
+    <script src="/assets/js/theme.js"></script>
   </body>
 </html>

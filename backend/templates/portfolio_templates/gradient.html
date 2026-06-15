@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ name }} | Portfolio</title>
+    <style>
+      body { margin: 0; font-family: 'Poppins', Arial, sans-serif; background: #f5f3ff; color: #1e1b2e; }
+      .page { max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem; }
+      .hero {
+        padding: 3rem 2rem;
+        border-radius: 28px;
+        background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #f59e0b 100%);
+        color: #ffffff;
+        text-align: center;
+      }
+      .hero h1 { margin: 0; font-size: clamp(2.6rem, 5vw, 4rem); }
+      .hero .role { margin: 0.6rem 0 0; font-weight: 600; opacity: 0.95; }
+      .contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem; margin-top: 1.4rem; opacity: 0.9; font-size: 0.9rem; }
+      .section { margin-top: 2rem; }
+      .card { background: #ffffff; border-radius: 22px; padding: 1.6rem; box-shadow: 0 20px 60px rgba(99,102,241,0.12); }
+      .section h2 { margin: 0 0 1rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.18em; color: #6366f1; }
+      .skills { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+      .skill-pill { background: linear-gradient(135deg, #ede9fe, #fce7f3); color: #6d28d9; border-radius: 999px; padding: 0.6rem 1.1rem; font-weight: 600; font-size: 0.9rem; }
+      .projects { display: grid; gap: 1.2rem; margin-top: 1.2rem; }
+      .project-card { background: #ffffff; padding: 1.4rem; border-radius: 20px; box-shadow: 0 16px 40px rgba(236,72,153,0.1); }
+      .project-card h3 { margin: 0 0 0.4rem; color: #1e1b2e; }
+      .project-card p { color: #6b7280; margin: 0; }
+      .project-card a { color: #ec4899; font-weight: 700; text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <article class="page">
+      <section class="hero">
+        <h1>{{ name }}</h1>
+        <p class="role">{{ role }}</p>
+        <div class="contact">
+          <span>{{ email }}</span>
+          <span>{{ phone }}</span>
+          <span>{{ website }}</span>
+        </div>
+      </section>
+      <section class="section card">
+        <h2>About</h2>
+        <p>{{ about }}</p>
+      </section>
+      <section class="section card">
+        <h2>Skills</h2>
+        <div class="skills">
+          {% for skill in skills %}
+          <span class="skill-pill">{{ skill }}</span>
+          {% endfor %}
+        </div>
+      </section>
+      <section class="section">
+        <h2 style="margin-left: 0.25rem;">Projects</h2>
+        <div class="projects">
+          {% for project in projects %}
+          <article class="project-card">
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+            {% if project.link %}
+            <p><a href="{{ project.link }}" target="_blank">View Project</a></p>
+            {% endif %}
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+    </article>
+  </body>
+</html>

@@ -1,15 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ResumeForge | Resume Builder</title>
+    <title>ASSIGNER | Resume Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="stylesheet" href="/assets/css/resume.css" />
   </head>
   <body>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle lamp-toggle" id="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+      <svg class="lamp-icon" id="lamp-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="lampGlow" cx="50%" cy="38%" r="60%">
+            <stop offset="0%" stop-color="#fff7cc" stop-opacity="0.95"/>
+            <stop offset="55%" stop-color="#ffd84d" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#ffd84d" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle class="lamp-glow" cx="32" cy="24" r="22" fill="url(#lampGlow)"/>
+        <path class="lamp-shade" d="M18 26 L46 26 L40 10 L24 10 Z" fill="currentColor"/>
+        <circle class="lamp-bulb" cx="32" cy="30" r="7"/>
+        <rect class="lamp-pole" x="30" y="30" width="4" height="16" fill="currentColor"/>
+        <path class="lamp-base" d="M20 50 H44 L40 56 H24 Z" fill="currentColor"/>
+      </svg>
+      <span id="theme-label">Dark</span>
+    </button>
+
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="container">
+        <a class="brand" href="/">
+          <span class="brand-mark">✦</span>
+          ASSIGNER
+        </a>
+        <div class="nav-actions">
+          <span class="user-email-badge" data-user-email></span>
+          <a class="ghost-button" href="/">Home</a>
+          <a class="ghost-button" href="/portfolio-builder.html">Portfolio Builder</a>
+          <button class="logout-button" id="logout-btn">Logout</button>
+        </div>
+      </div>
+    </header>
+
     <main class="container page-builder">
-      <section class="builder-panel card">
+      <section class="builder-panel card reveal">
         <div class="panel-header">
           <div>
             <h1 class="section-title">Resume Builder</h1>
@@ -73,18 +112,27 @@
             <textarea id="education" name="education" rows="3" placeholder="B.A. in Design - University Name"></textarea>
           </label>
 
+          <label>
+            Certificates / Achievements
+            <input type="file" id="resume-certificates" name="certificates" accept="image/*,application/pdf" multiple />
+            <div id="resume-certificates-list" class="certificates-list"></div>
+          </label>
+
           <button type="submit" class="primary-button">Generate PDF</button>
         </form>
 
         <div id="resume-result" class="result-panel"></div>
       </section>
 
-      <section class="preview-panel card">
+      <section class="preview-panel card reveal reveal-delay-1">
         <h2 class="section-title">Live Preview</h2>
         <div id="resume-preview" class="preview-box"></div>
+        <div id="resume-achievements-preview" class="achievements-preview"></div>
       </section>
     </main>
 
     <script src="/assets/js/resume.js"></script>
+    <script src="/assets/js/auth-guard.js"></script>
+    <script src="/assets/js/theme.js"></script>
   </body>
 </html>

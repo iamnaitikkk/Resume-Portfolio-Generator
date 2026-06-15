@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ name }} | Portfolio</title>
+    <style>
+      body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #f1f5f9; color: #1e293b; }
+      .page { max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem; display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem; }
+      .sidebar { background: #1e3a5f; color: #ffffff; border-radius: 18px; padding: 2rem; align-self: start; }
+      .sidebar h1 { margin: 0; font-size: 1.9rem; }
+      .sidebar .role { margin: 0.5rem 0 1.5rem; color: #93c5fd; font-weight: 600; }
+      .sidebar .contact div { margin-bottom: 0.5rem; color: #cbd5e1; font-size: 0.9rem; }
+      .sidebar .skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+      .sidebar .skill-pill { background: #2d4a6e; color: #e0f2fe; border-radius: 8px; padding: 0.45rem 0.8rem; font-size: 0.8rem; }
+      .main { display: flex; flex-direction: column; gap: 1.2rem; }
+      .card { background: #ffffff; border-radius: 18px; padding: 1.6rem; box-shadow: 0 10px 30px rgba(30,58,95,0.06); }
+      .card h2 { margin: 0 0 0.8rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.12em; color: #1e3a5f; }
+      .project { padding: 1rem 0; border-bottom: 1px solid #e2e8f0; }
+      .project:last-child { border-bottom: none; }
+      .project h3 { margin: 0 0 0.3rem; }
+      .project p { margin: 0; color: #64748b; }
+      .project a { color: #1e3a5f; font-weight: 600; }
+      @media (max-width: 760px) { .page { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <aside class="sidebar">
+        <h1>{{ name }}</h1>
+        <p class="role">{{ role }}</p>
+        <div class="contact">
+          <div>{{ email }}</div>
+          <div>{{ phone }}</div>
+          <div>{{ website }}</div>
+        </div>
+        <div class="skills">
+          {% for skill in skills %}
+          <span class="skill-pill">{{ skill }}</span>
+          {% endfor %}
+        </div>
+      </aside>
+      <div class="main">
+        <section class="card">
+          <h2>About</h2>
+          <p>{{ about }}</p>
+        </section>
+        <section class="card">
+          <h2>Projects</h2>
+          {% for project in projects %}
+          <div class="project">
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+            {% if project.link %}
+            <p><a href="{{ project.link }}" target="_blank">View Project</a></p>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

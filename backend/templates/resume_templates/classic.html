@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ name }} | Resume</title>
+    <style>
+      @page { size: A4; margin: 18mm; }
+      body {
+        margin: 0;
+        font-family: Georgia, 'Times New Roman', serif;
+        background: #f7f5f0;
+        color: #2b2b2b;
+        font-size: 11pt;
+        line-height: 1.5;
+      }
+      .resume-document {
+        width: 100%;
+        max-width: 760px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 36px;
+        border: 1px solid #ddd8cc;
+      }
+      .resume-header {
+        text-align: center;
+        padding-bottom: 14px;
+        border-bottom: 2px solid #2b2b2b;
+        margin-bottom: 18px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 26pt;
+        letter-spacing: 1px;
+      }
+      .role {
+        margin: 6px 0 0;
+        font-style: italic;
+        color: #5a5246;
+      }
+      .contact {
+        margin-top: 10px;
+        font-size: 9pt;
+        color: #6b6356;
+      }
+      .contact span { margin: 0 8px; }
+      .summary {
+        margin: 0 0 20px;
+        text-align: justify;
+        color: #3a3a3a;
+      }
+      h2 {
+        margin: 0 0 8px;
+        font-size: 11pt;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border-bottom: 1px solid #cfc9bb;
+        padding-bottom: 4px;
+      }
+      .section { margin-bottom: 18px; }
+      ul { margin: 0; padding-left: 18px; }
+      li { margin-bottom: 6px; }
+      .skill {
+        display: inline-block;
+        margin: 0 14px 6px 0;
+        font-style: italic;
+      }
+      @media print {
+        body { background: #ffffff; }
+        .resume-document { border: 0; padding: 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <article class="resume-document resume-classic">
+      <header class="resume-header">
+        <h1>{{ name }}</h1>
+        <p class="role">{{ title }}</p>
+        <div class="contact">
+          <span>{{ email }}</span>
+          <span>{{ phone }}</span>
+          <span>{{ location }}</span>
+        </div>
+      </header>
+
+      <p class="summary">{{ summary }}</p>
+
+      <section class="section">
+        <h2>Experience</h2>
+        <ul>
+          {% for item in experience %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Education</h2>
+        <ul>
+          {% for item in education %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Skills</h2>
+        {% for skill in skills %}
+        <span class="skill">{{ skill }}</span>
+        {% endfor %}
+      </section>
+    </article>
+  </body>
+</html>

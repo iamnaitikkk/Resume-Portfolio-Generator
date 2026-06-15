@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ name }} | Portfolio</title>
+    <style>
+      body { margin: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background: #111111; color: #f5f5f5; }
+      .page { max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem; }
+      .hero { text-align: center; padding-bottom: 2.5rem; }
+      .hero .eyebrow { letter-spacing: 0.35em; text-transform: uppercase; font-size: 0.75rem; color: #a3a3a3; margin: 0 0 0.8rem; }
+      .hero h1 { margin: 0; font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 300; letter-spacing: 0.05em; }
+      .hero .role { margin: 0.6rem 0 0; color: #d4d4d4; font-size: 1.05rem; }
+      .contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.4rem; margin-top: 1.2rem; color: #737373; font-size: 0.85rem; }
+      .about { max-width: 620px; margin: 1.6rem auto 0; text-align: center; color: #d4d4d4; line-height: 1.8; }
+      .section { margin-top: 2.5rem; }
+      .section h2 { margin: 0 0 1.2rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.3em; color: #a3a3a3; text-align: center; }
+      .skills { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+      .skill-pill { border: 1px solid #404040; color: #e5e5e5; border-radius: 999px; padding: 0.55rem 1.1rem; font-size: 0.85rem; }
+      .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .frame { aspect-ratio: 4 / 3; background: linear-gradient(135deg, #262626, #404040); border-radius: 4px; display: flex; align-items: flex-end; padding: 1rem; }
+      .frame h3 { margin: 0; font-size: 1.05rem; font-weight: 500; }
+      .frame p { margin: 0.3rem 0 0; font-size: 0.8rem; color: #a3a3a3; }
+      .frame a { color: #f5f5f5; text-decoration: underline; font-size: 0.8rem; }
+      @media (max-width: 640px) { .gallery { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <article class="page">
+      <header class="hero">
+        <p class="eyebrow">Visual Portfolio</p>
+        <h1>{{ name }}</h1>
+        <p class="role">{{ role }}</p>
+        <div class="contact">
+          <span>{{ email }}</span>
+          <span>{{ phone }}</span>
+          <span>{{ website }}</span>
+        </div>
+        <p class="about">{{ about }}</p>
+      </header>
+      <section class="section">
+        <h2>Focus</h2>
+        <div class="skills">
+          {% for skill in skills %}
+          <span class="skill-pill">{{ skill }}</span>
+          {% endfor %}
+        </div>
+      </section>
+      <section class="section">
+        <h2>Selected Work</h2>
+        <div class="gallery">
+          {% for project in projects %}
+          <div class="frame">
+            <div>
+              <h3>{{ project.name }}</h3>
+              <p>{{ project.description }}</p>
+              {% if project.link %}
+              <a href="{{ project.link }}" target="_blank">View →</a>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+    </article>
+  </body>
+</html>

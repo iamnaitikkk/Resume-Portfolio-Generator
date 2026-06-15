@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ name }} | Portfolio</title>
+    <style>
+      body { margin: 0; font-family: 'Courier New', monospace; background: #0d1117; color: #c9d1d9; }
+      .page { max-width: 820px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+      .window { background: #161b22; border: 1px solid #30363d; border-radius: 10px; overflow: hidden; }
+      .titlebar { background: #21262d; padding: 0.6rem 1rem; display: flex; gap: 0.5rem; align-items: center; }
+      .dot { width: 12px; height: 12px; border-radius: 50%; }
+      .dot.red { background: #ff5f56; }
+      .dot.yellow { background: #ffbd2e; }
+      .dot.green { background: #27c93f; }
+      .titlebar span { margin-left: 0.6rem; color: #8b949e; font-size: 0.85rem; }
+      .content { padding: 1.6rem; }
+      .prompt { color: #3fb950; }
+      .prompt::before { content: "$ "; }
+      h1 { margin: 0.3rem 0 0; font-size: 2rem; color: #58a6ff; }
+      .role { color: #8b949e; margin: 0.3rem 0 1.2rem; }
+      .contact { color: #8b949e; margin-bottom: 1.4rem; font-size: 0.9rem; }
+      .contact span { display: block; margin-bottom: 0.2rem; }
+      .section { margin-top: 1.6rem; }
+      .section h2 { margin: 0 0 0.8rem; color: #3fb950; font-size: 0.95rem; }
+      .section h2::before { content: "// "; color: #8b949e; }
+      .skills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .skill-pill { background: #21262d; border: 1px solid #30363d; color: #79c0ff; border-radius: 6px; padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+      .project { margin-bottom: 1rem; padding-left: 1rem; border-left: 2px solid #30363d; }
+      .project h3 { margin: 0 0 0.3rem; color: #c9d1d9; }
+      .project p { margin: 0; color: #8b949e; }
+      .project a { color: #58a6ff; }
+      .about { color: #c9d1d9; line-height: 1.7; }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="window">
+        <div class="titlebar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span>portfolio.sh</span>
+        </div>
+        <div class="content">
+          <p class="prompt">whoami</p>
+          <h1>{{ name }}</h1>
+          <p class="role">{{ role }}</p>
+          <div class="contact">
+            <span>email: {{ email }}</span>
+            <span>phone: {{ phone }}</span>
+            <span>web: {{ website }}</span>
+          </div>
+          <section class="section">
+            <h2>about</h2>
+            <p class="about">{{ about }}</p>
+          </section>
+          <section class="section">
+            <h2>skills</h2>
+            <div class="skills">
+              {% for skill in skills %}
+              <span class="skill-pill">{{ skill }}</span>
+              {% endfor %}
+            </div>
+          </section>
+          <section class="section">
+            <h2>projects</h2>
+            {% for project in projects %}
+            <div class="project">
+              <h3>{{ project.name }}</h3>
+              <p>{{ project.description }}</p>
+              {% if project.link %}
+              <a href="{{ project.link }}" target="_blank">{{ project.link }}</a>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

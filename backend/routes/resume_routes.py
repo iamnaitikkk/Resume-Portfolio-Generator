@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from flask import Blueprint, request, jsonify, Response
+from flask import Blueprint, request, jsonify, Response, session
 
 from backend.config import PDF_DIR
 from backend.services.resume_generator import list_templates as list_resume_templates, render_resume
@@ -23,6 +23,9 @@ def preview_resume():
 
 @resume_bp.route("/generate", methods=["POST"])
 def generate_resume():
+    if not session.get("user"):
+        return jsonify({"success": False, "error": "Authentication required"}), 401
+
     data = request.get_json() or {}
     template = data.get("template", "modern")
     available = list_resume_templates()
